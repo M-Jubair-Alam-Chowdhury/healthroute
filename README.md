@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏥 YOUR_APP_NAME
+# HealthRoute AI
 
 **Describe your symptoms. Find the right hospital department. Get directions.**
 

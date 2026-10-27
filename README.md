@@ -23,7 +23,7 @@ In a big city like Dhaka, many people don't know whether to see a cardiologist, 
 
 ## What it does
 
-1. **Collect symptoms** by tapping a 3D body map, typing in a chat-style box, or both.
+ **Collect symptoms** by tapping a 3D body map, typing in a chat-style box, or both.
 2. **Classify** the text with an AI model that predicts one of 13 hospital departments.
 3. **Assess risk level** with a second model.
 4. **Show nearby hospitals** that have that department, using the phone's location and Google Maps.
@@ -119,7 +119,7 @@ POST {RISK_API}/risk
 
 | Name | Role |
 |---|---|
-| Nahraf Chowdhury | Model training |
+| M. Jubair Alam Chowdhury | Model training |
 | SYH Shanto | Hospital and department data |
 | Inzamumul Haque | Frontend and body-map UI |
 | Rawnak Tanvir Dihan | Symptom Data |

@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%; --foreground: 222 20% 12%;
+  --card: 0 0% 100%; --card-foreground: 222 20% 12%;
+  --primary: 222 20% 12%; --primary-foreground: 0 0% 98%;
+  --secondary: 210 20% 95%; --secondary-foreground: 222 20% 12%;
+  --muted: 210 20% 96%; --muted-foreground: 215 12% 42%;
+  --accent: 210 25% 94%; --accent-foreground: 222 20% 12%;
+  --destructive: 0 72% 51%; --destructive-foreground: 0 0% 98%;
+  --border: 214 20% 88%; --input: 214 20% 88%;
+}
+* { border-color: hsl(var(--border)); }
+body { background: hsl(var(--background)); color: hsl(var(--foreground)); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; }
+
+/* Marker styles the map module expects (its README: hm-pin, hm-user-dot, hm-scroll, hm-ping) */
+.hm-pin-wrapper, .hm-user-wrapper { background: transparent !important; border: none !important; }
+.hm-pin { width: 34px; height: 34px; border-radius: 9999px; background: #0f766e; color: #fff; border: 3px solid #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.35); transition: transform .15s; }
+.hm-pin--emergency { background: #dc2626; }
+.hm-pin--selected { background: #1d4ed8; transform: scale(1.25); }
+.hm-user-dot { position: relative; width: 22px; height: 22px; border-radius: 9999px; background: #2563eb; border: 3px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
+.hm-user-dot__pulse { position: absolute; inset: -3px; border-radius: 9999px; background: rgba(37,99,235,.45); animation: hm-ping 1.8s cubic-bezier(0,0,.2,1) infinite; }
+@keyframes hm-ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
+.hm-ping { animation: hm-ping 1.8s cubic-bezier(0,0,.2,1) infinite; }
+.hm-scroll { scrollbar-width: thin; }

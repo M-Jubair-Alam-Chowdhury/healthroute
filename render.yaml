@@ -1,0 +1,45 @@
+# Render Blueprint: creates the three small Python services from the GitHub repo (the website goes on Vercel).
+services:
+  - type: web
+    name: healthroute-hospital-api
+    runtime: python
+    plan: free
+    region: singapore
+    rootDir: hospital-api
+    buildCommand: pip install -r requirements.txt
+    # Render's free disk is wiped on every restart, so the database is rebuilt from the CSVs each time
+    startCommand: python -m app.seed && python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /departments
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+  - type: web
+    name: healthroute-emergency-flag
+    runtime: python
+    plan: free
+    region: singapore
+    rootDir: mock-risk
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+  # The department model, PyTorch-free (ONNX) so it fits the free 512 MB instance.
+  # Needs model.int8.onnx, tokenizer.json and meta.json in a Hugging Face MODEL repo (see model-onnx/export_onnx.py).
+  - type: web
+    name: healthroute-model
+    runtime: python
+    plan: free
+    region: singapore
+    rootDir: model-onnx
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ONNX_REPO
+        value: Nahraf-Chowdhury/InshaAllahHobe_v1-onnx   # change if you upload the ONNX files to a different repo
+      - key: ONNX_FILE
+        value: model.fp32.onnx

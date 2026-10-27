@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ccd9d5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1816" media="(prefers-color-scheme: dark)">
+  <title>HealthRoute AI</title>
+  <style>
+    html, body { height: 100%; margin: 0; overflow: hidden; overscroll-behavior: none; }
+    body { background: #ccd9d5; }
+    @media (prefers-color-scheme: dark) { body { background: #0f1816; } }
+    :root { --hdr: 84px; --lift: 26px; }
+    care-app-header { display: block; }
+    /* the form slides up over the teal header with a rounded top edge, like the result screen */
+    health-body-selector {
+      display: block; position: relative; z-index: 2; margin-top: calc(var(--lift) * -1);
+      --care-height: calc(100dvh - var(--hdr) - env(safe-area-inset-top, 0px) + var(--lift));
+      border-radius: 28px 28px 0 0; overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <care-app-header></care-app-header>
+  <!-- show-output prints the text that is handed to the AI (demo only: remove it in production).
+       Optional: emergency-number="999"  single-select  figure="clinical"  layer="internal|skeleton"  submit-label="Continue"
+       model-api / risk-api (or setApiEndpoints below): base URLs of the two model services -->
+  <health-body-selector
+    emergency-number="999"
+    model-src-female="./models/basic_human_female.glb"
+    model-src-male="./models/basic_male_model.glb"
+    model-pose-female="12"
+    model-pose-male="12"
+  ></health-body-selector>
+  <care-result-screen emergency-number="999"></care-result-screen>
+  <care-info-page></care-info-page>
+  <script src="./models-inline.js"></script>
+  <script src="./body-selector.js"></script>
+  <script src="./care-models.js"></script>
+  <script src="./care-result.js"></script>
+  <script src="./care-pages.js"></script>
+  <script>
+    const el = document.querySelector("health-body-selector");
+
+    // ---- The two model services. Leave BOTH empty to use the built-in MOCK models (for testing). ----
+    //   POST {MODEL_API}/predict  { "text": "chest pain; left hand tingling;" }          -> { "top3": [ { "label": "Cardiology", "score": 0.90 }, ... ] }
+    //   POST {RISK_API}/risk      { "text": "...", "sex": "female" }                      -> { "risk": "Low" | "Medium" | "High", "score": 0.62 }
+    const MODEL_API = "";   // e.g. "https://your-model-host.example.com"
+    const RISK_API  = "";   // e.g. "https://your-risk-host.example.com"
+    CareModels.configure({ modelApi: MODEL_API, riskApi: RISK_API });
+    // (the form itself is NOT given the endpoints: this page runs the models so it can drive the result screen)
+
+    // Header buttons open the simple "How to use" / "Terms" pages (display only; the form is untouched).
+    const pages = document.querySelector("care-info-page");
+    document.querySelector("care-app-header").addEventListener("care-open-page", e => pages.show(e.detail.page));
+
+    const result = document.querySelector("care-result-screen");
+    let lastInput = null, runId = 0;
+
+    async function analyse(input) {
+      lastInput = input;
+      const mine = ++runId;
+      result.showLoading();
+      const res = await CareModels.run(input);          // { predict, risk, errors, ok }
+      if (mine !== runId) return;                       // person cancelled / started again meanwhile
+      if (res.ok) result.showResult(res);
+      else result.showError("The analysis service didn't respond. Please check your connection and try again.");
+      window.dispatchEvent(new CustomEvent("care-analysis-result", { detail: res }));   // for your own logging / next module
+    }
+
+    // Person pressed Send / Continue: show the loading screen, run both models, then show the results.
+    el.addEventListener("body-selection-submit", e => {
+      window.dispatchEvent(new CustomEvent("care-anatomy-ai-input", { detail: e.detail }));
+      analyse({ text: e.detail.aiPromptText, sex: e.detail.anatomicalProfile });
+    });
+    result.addEventListener("care-result-retry", () => lastInput && analyse(lastInput));
+    // "back" hides the result screen (the form keeps everything selected) and drops any answer still on its way.
+    result.addEventListener("care-result-back", () => { runId++; });
+
+    // Person pressed "Open suggested Hospitals". detail = { department, risk, score, top3 }  -> connect your map module here.
+    result.addEventListener("care-open-hospitals", e => {
+      console.log("open hospitals for", e.detail);
+      window.dispatchEvent(new CustomEvent("care-open-hospitals", { detail: e.detail }));
+    });
+
+    // Person pressed "Send emergency alert". Deliver it yourself, then mark it handled.
+    el.addEventListener("care-emergency-alert", e => {
+      // e.g. await fetch("/api/sos", { method: "POST", body: JSON.stringify(e.detail.report) });
+      e.detail.handled = true;
+      e.detail.message = "Demo only: the real app would send your alert, current description and location to your emergency contacts.";
+    });
+  </script>
+</body>
+</html>

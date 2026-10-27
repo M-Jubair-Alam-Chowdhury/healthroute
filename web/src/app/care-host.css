@@ -1,0 +1,11 @@
+/* Layout from the SDK's own index.html, scoped to this page via html.care-root (set in page.tsx) */
+html.care-root, html.care-root body { height: 100%; margin: 0; overflow: hidden; overscroll-behavior: none; }
+html.care-root body { background: #ccd9d5; }
+@media (prefers-color-scheme: dark) { html.care-root body { background: #0f1816; } }
+html.care-root { --hdr: 84px; --lift: 26px; }
+html.care-root care-app-header { display: block; }
+html.care-root health-body-selector {
+  display: block; position: relative; z-index: 2; margin-top: calc(var(--lift) * -1);
+  --care-height: calc(100dvh - var(--hdr) - env(safe-area-inset-top, 0px) + var(--lift));
+  border-radius: 28px 28px 0 0; overflow: hidden;
+}

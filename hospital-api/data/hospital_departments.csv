@@ -1,0 +1,232 @@
+# SAMPLE hospital→department mapping — REPLACE WITH YOUR ASSIGNMENT DICTIONARY.
+#
+# This file is long-format: one (hospital key, department) pair per row, which
+# is exactly what the hospital_departments link table stores. The `hospital`
+# column must match the `name` column in hospital_coords.csv
+# (e.g. "BIRDEMGeneralHospital" — no spaces, the dictionary key).
+#
+# The departments below are plausible for these Dhaka hospitals but were NOT
+# provided in the assignment data — swap in the real dictionary when you have
+# it, then re-run:  python -m app.seed
+hospital,department
+# SAMPLE hospital→department mapping — REPLACE WITH YOUR ASSIGNMENT DICTIONARY.
+#
+# This file is long-format: one (hospital key, department) pair per row, which
+# is exactly what the hospital_departments link table stores. The `hospital`
+# column must match the `name` column in hospital_coords.csv
+# (e.g. "BIRDEMGeneralHospital" — no spaces, the dictionary key).
+#
+# The departments below are plausible for these Dhaka hospitals but were NOT
+# provided in the assignment data — swap in the real dictionary when you have
+# it, then re-run:  python -m app.seed
+# hospital,department
+AddinMedicalCollegeHospital,Cardiology
+AddinMedicalCollegeHospital,Neurology
+AddinMedicalCollegeHospital,Respiratory
+AddinMedicalCollegeHospital,Haematology
+AddinMedicalCollegeHospital,Endocrinology / Nutrition
+AddinMedicalCollegeHospital,Gastroenterology / Hepatology
+AddinMedicalCollegeHospital,Nephrology / Urology
+AddinMedicalCollegeHospital,Infectious disease
+AddinMedicalCollegeHospital,Dermatology
+AddinMedicalCollegeHospital,Rheumatology / Musculoskeletal
+AddinMedicalCollegeHospital,Eye
+AddinMedicalCollegeHospital,ENT
+AddinMedicalCollegeHospital,Dentistry
+AnwarKhanModernMedicalCollegeHospital,Cardiology
+AnwarKhanModernMedicalCollegeHospital,Neurology
+AnwarKhanModernMedicalCollegeHospital,Respiratory
+AnwarKhanModernMedicalCollegeHospital,Haematology
+AnwarKhanModernMedicalCollegeHospital,Endocrinology / Nutrition
+AnwarKhanModernMedicalCollegeHospital,Gastroenterology / Hepatology
+AnwarKhanModernMedicalCollegeHospital,Nephrology / Urology
+AnwarKhanModernMedicalCollegeHospital,Infectious disease
+AnwarKhanModernMedicalCollegeHospital,Dermatology
+AnwarKhanModernMedicalCollegeHospital,Rheumatology / Musculoskeletal
+AnwarKhanModernMedicalCollegeHospital,Eye
+AnwarKhanModernMedicalCollegeHospital,ENT
+AnwarKhanModernMedicalCollegeHospital,Dentistry
+BIRDEMGeneralHospital,Cardiology
+BIRDEMGeneralHospital,Neurology
+BIRDEMGeneralHospital,Respiratory
+BIRDEMGeneralHospital,Haematology
+BIRDEMGeneralHospital,Endocrinology / Nutrition
+BIRDEMGeneralHospital,Gastroenterology / Hepatology
+BIRDEMGeneralHospital,Nephrology / Urology
+BIRDEMGeneralHospital,Infectious disease
+BIRDEMGeneralHospital,Dermatology
+BIRDEMGeneralHospital,Rheumatology / Musculoskeletal
+BIRDEMGeneralHospital,Eye
+BIRDEMGeneralHospital,ENT
+BIRDEMGeneralHospital,Dentistry
+BangladeshMedicalCollegeHospital,Cardiology
+BangladeshMedicalCollegeHospital,Neurology
+BangladeshMedicalCollegeHospital,Respiratory
+BangladeshMedicalCollegeHospital,Haematology
+BangladeshMedicalCollegeHospital,Endocrinology / Nutrition
+BangladeshMedicalCollegeHospital,Gastroenterology / Hepatology
+BangladeshMedicalCollegeHospital,Nephrology / Urology
+BangladeshMedicalCollegeHospital,Infectious disease
+BangladeshMedicalCollegeHospital,Rheumatology / Musculoskeletal
+BangladeshMedicalCollegeHospital,Eye
+BangladeshMedicalCollegeHospital,ENT
+BangladeshMedicalUniversity,Cardiology
+BangladeshMedicalUniversity,Neurology
+BangladeshMedicalUniversity,Respiratory
+BangladeshMedicalUniversity,Haematology
+BangladeshMedicalUniversity,Endocrinology / Nutrition
+BangladeshMedicalUniversity,Gastroenterology / Hepatology
+BangladeshMedicalUniversity,Nephrology / Urology
+BangladeshMedicalUniversity,Infectious disease
+BangladeshMedicalUniversity,Dermatology
+BangladeshMedicalUniversity,Rheumatology / Musculoskeletal
+BangladeshMedicalUniversity,Eye
+BangladeshMedicalUniversity,ENT
+BangladeshMedicalUniversity,Dentistry
+BangladeshEyeHospital,Eye
+CityHospitalLtd,Cardiology
+CityHospitalLtd,Neurology
+CityHospitalLtd,Respiratory
+CityHospitalLtd,Haematology
+CityHospitalLtd,Endocrinology / Nutrition
+CityHospitalLtd,Gastroenterology / Hepatology
+CityHospitalLtd,Nephrology / Urology
+CityHospitalLtd,Infectious disease
+CityHospitalLtd,Dermatology
+CityHospitalLtd,Rheumatology / Musculoskeletal
+CityHospitalLtd,ENT
+CityHospitalLtd,Dentistry
+CentralHospitalLimited,Cardiology
+CentralHospitalLimited,Neurology
+CentralHospitalLimited,Respiratory
+CentralHospitalLimited,Haematology
+CentralHospitalLimited,Endocrinology / Nutrition
+CentralHospitalLimited,Gastroenterology / Hepatology
+CentralHospitalLimited,Nephrology / Urology
+CentralHospitalLimited,Infectious disease
+CentralHospitalLimited,Dermatology
+CentralHospitalLimited,Rheumatology / Musculoskeletal
+CentralHospitalLimited,ENT
+DhakaMedicalCollegeHospital,Cardiology
+DhakaMedicalCollegeHospital,Neurology
+DhakaMedicalCollegeHospital,Respiratory
+DhakaMedicalCollegeHospital,Haematology
+DhakaMedicalCollegeHospital,Endocrinology / Nutrition
+DhakaMedicalCollegeHospital,Gastroenterology / Hepatology
+DhakaMedicalCollegeHospital,Nephrology / Urology
+DhakaMedicalCollegeHospital,Infectious disease
+DhakaMedicalCollegeHospital,Dermatology
+DhakaMedicalCollegeHospital,Rheumatology / Musculoskeletal
+DhakaMedicalCollegeHospital,Eye
+DhakaMedicalCollegeHospital,ENT
+DhakaMedicalCollegeHospital,Dentistry
+DrSirajulIslamMedicalCollegeAndHospital,Cardiology
+DrSirajulIslamMedicalCollegeAndHospital,Neurology
+DrSirajulIslamMedicalCollegeAndHospital,Nephrology / Urology
+DrSirajulIslamMedicalCollegeAndHospital,Infectious disease
+DrSirajulIslamMedicalCollegeAndHospital,Dermatology
+DrSirajulIslamMedicalCollegeAndHospital,Rheumatology / Musculoskeletal
+DrSirajulIslamMedicalCollegeAndHospital,Eye
+DrSirajulIslamMedicalCollegeAndHospital,ENT
+DrSirajulIslamMedicalCollegeAndHospital,Dentistry
+GreenLifeMedicalCollegeHospital,Cardiology
+GreenLifeMedicalCollegeHospital,Neurology
+GreenLifeMedicalCollegeHospital,Respiratory
+GreenLifeMedicalCollegeHospital,Haematology
+GreenLifeMedicalCollegeHospital,Endocrinology / Nutrition
+GreenLifeMedicalCollegeHospital,Gastroenterology / Hepatology
+GreenLifeMedicalCollegeHospital,Nephrology / Urology
+GreenLifeMedicalCollegeHospital,Infectious disease
+GreenLifeMedicalCollegeHospital,Dermatology
+GreenLifeMedicalCollegeHospital,Rheumatology / Musculoskeletal
+GreenLifeMedicalCollegeHospital,Eye
+GreenLifeMedicalCollegeHospital,ENT
+GreenLifeMedicalCollegeHospital,Dentistry
+HolyFamilyRedCrescentMedicalCollegeHospital,Cardiology
+HolyFamilyRedCrescentMedicalCollegeHospital,Neurology
+HolyFamilyRedCrescentMedicalCollegeHospital,Respiratory
+HolyFamilyRedCrescentMedicalCollegeHospital,Endocrinology / Nutrition
+HolyFamilyRedCrescentMedicalCollegeHospital,Nephrology / Urology
+HolyFamilyRedCrescentMedicalCollegeHospital,Infectious disease
+HolyFamilyRedCrescentMedicalCollegeHospital,Dermatology
+HolyFamilyRedCrescentMedicalCollegeHospital,Rheumatology / Musculoskeletal
+HolyFamilyRedCrescentMedicalCollegeHospital,Eye
+HolyFamilyRedCrescentMedicalCollegeHospital,ENT
+HolyFamilyRedCrescentMedicalCollegeHospital,Dentistry
+InsafBarakahHospital,Cardiology
+InsafBarakahHospital,Neurology
+InsafBarakahHospital,Respiratory
+InsafBarakahHospital,Haematology
+InsafBarakahHospital,Endocrinology / Nutrition
+InsafBarakahHospital,Gastroenterology / Hepatology
+InsafBarakahHospital,Nephrology / Urology
+InsafBarakahHospital,Infectious disease
+InsafBarakahHospital,Dermatology
+InsafBarakahHospital,Rheumatology / Musculoskeletal
+InsafBarakahHospital,Eye
+InsafBarakahHospital,ENT
+InsafBarakahHospital,Dentistry
+IbnSinaSpecializedHospital,Cardiology
+IbnSinaSpecializedHospital,Neurology
+IbnSinaSpecializedHospital,Respiratory
+IbnSinaSpecializedHospital,Haematology
+IbnSinaSpecializedHospital,Endocrinology / Nutrition
+IbnSinaSpecializedHospital,Gastroenterology / Hepatology
+IbnSinaSpecializedHospital,Nephrology / Urology
+IbnSinaSpecializedHospital,Infectious disease
+IbnSinaSpecializedHospital,Dermatology
+IbnSinaSpecializedHospital,Rheumatology / Musculoskeletal
+IbnSinaSpecializedHospital,ENT
+IbnSinaSpecializedHospital,Dentistry
+IbrahimCardiacHospitalAndResearchInstitute,Cardiology
+IbrahimCardiacHospitalAndResearchInstitute,Neurology
+IbrahimCardiacHospitalAndResearchInstitute,Gastroenterology / Hepatology
+LabaidSpecializedHospital,Cardiology
+LabaidSpecializedHospital,Neurology
+LabaidSpecializedHospital,Respiratory
+LabaidSpecializedHospital,Haematology
+LabaidSpecializedHospital,Endocrinology / Nutrition
+LabaidSpecializedHospital,Gastroenterology / Hepatology
+LabaidSpecializedHospital,Nephrology / Urology
+LabaidSpecializedHospital,Infectious disease
+LabaidSpecializedHospital,Dermatology
+LabaidSpecializedHospital,Rheumatology / Musculoskeletal
+LabaidSpecializedHospital,Eye
+LabaidSpecializedHospital,ENT
+LabaidSpecializedHospital,Dentistry
+MonowaraHospitalPvtLtd,Cardiology
+MonowaraHospitalPvtLtd,Neurology
+MonowaraHospitalPvtLtd,Respiratory
+MonowaraHospitalPvtLtd,Haematology
+MonowaraHospitalPvtLtd,Endocrinology / Nutrition
+MonowaraHospitalPvtLtd,Gastroenterology / Hepatology
+MonowaraHospitalPvtLtd,Nephrology / Urology
+MonowaraHospitalPvtLtd,Infectious disease
+MonowaraHospitalPvtLtd,Dermatology
+MonowaraHospitalPvtLtd,Rheumatology / Musculoskeletal
+MonowaraHospitalPvtLtd,ENT
+SquareHospital,Cardiology
+SquareHospital,Neurology
+SquareHospital,Respiratory
+SquareHospital,Haematology
+SquareHospital,Endocrinology / Nutrition
+SquareHospital,Gastroenterology / Hepatology
+SquareHospital,Nephrology / Urology
+SquareHospital,Infectious disease
+SquareHospital,Dermatology
+SquareHospital,Rheumatology / Musculoskeletal
+SquareHospital,Eye
+SquareHospital,ENT
+SquareHospital,Dentistry
+SamoritaHospitalLimited,Cardiology
+SamoritaHospitalLimited,Neurology
+SamoritaHospitalLimited,Respiratory
+SamoritaHospitalLimited,Haematology
+SamoritaHospitalLimited,Endocrinology / Nutrition
+SamoritaHospitalLimited,Gastroenterology / Hepatology
+SamoritaHospitalLimited,Nephrology / Urology
+SamoritaHospitalLimited,Infectious disease
+SamoritaHospitalLimited,Rheumatology / Musculoskeletal
+SamoritaHospitalLimited,Eye
+SamoritaHospitalLimited,ENT
+SamoritaHospitalLimited,Dentistry

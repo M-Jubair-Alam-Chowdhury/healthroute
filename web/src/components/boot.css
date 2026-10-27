@@ -1,0 +1,57 @@
+/* Loading screen shown until the app, the 3D body and the services are ready. */
+.boot {
+  --b1: #0d9886; --b2: #054f45; --ink: #fff; --mute: rgba(255, 255, 255, .78);
+  position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px;
+  background: radial-gradient(120% 90% at 50% 0%, var(--b1), var(--b2));
+  color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased;
+  transition: opacity .5s ease, visibility 0s .5s;
+}
+@media (prefers-color-scheme: dark) { .boot { --b1: #1f4540; --b2: #0b1715; } }
+.boot.leave { opacity: 0; visibility: hidden; pointer-events: none; }
+.boot::before, .boot::after { content: ""; position: absolute; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .12); pointer-events: none; }
+.boot::before { width: 520px; height: 520px; right: -220px; top: -240px; }
+.boot::after { width: 360px; height: 360px; left: -150px; bottom: -190px; }
+
+.boot-card { position: relative; z-index: 1; width: 100%; max-width: 380px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+.boot-logo { position: relative; width: 150px; height: 150px; display: grid; place-items: center; margin-bottom: 26px; }
+.boot-logo b { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .5); animation: boot-ring 2.8s cubic-bezier(.2, .6, .3, 1) infinite; }
+.boot-logo b:nth-child(2) { animation-delay: .9s; }
+.boot-logo b:nth-child(3) { animation-delay: 1.8s; }
+@keyframes boot-ring { from { transform: scale(.45); opacity: .9; } to { transform: scale(1.15); opacity: 0; } }
+.boot-core { position: relative; width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .15);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .28) inset, 0 12px 30px -12px rgba(0, 0, 0, .45); backdrop-filter: blur(4px); }
+.boot-core svg { width: 62px; height: 36px; overflow: visible; }
+.boot-ecg { fill: none; stroke: #fff; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 260; stroke-dashoffset: 260; animation: boot-draw 2.1s linear infinite; }
+@keyframes boot-draw { 0% { stroke-dashoffset: 260; } 60% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -260; } }
+
+.boot-title { margin: 0; font-size: clamp(26px, 5vw, 32px); font-weight: 850; letter-spacing: -.02em; line-height: 1.1; }
+.boot-tag { margin: 8px 0 26px; font-size: 15px; color: var(--mute); line-height: 1.4; }
+
+.boot-steps { list-style: none; margin: 0 0 22px; padding: 0; width: 100%; display: flex; flex-direction: column; gap: 10px; text-align: left; }
+.boot-steps li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 650; color: var(--mute); transition: color .3s, opacity .3s; opacity: .62; }
+.boot-steps li.active { color: var(--ink); opacity: 1; }
+.boot-steps li.done { color: var(--ink); opacity: .95; }
+.boot-dot { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; border: 2px solid rgba(255, 255, 255, .35); transition: background .3s, border-color .3s; }
+.active .boot-dot { border-color: rgba(255, 255, 255, .25); border-top-color: #fff; animation: boot-spin .8s linear infinite; }
+.done .boot-dot { background: #fff; border-color: #fff; }
+.boot-dot svg { width: 12px; height: 12px; opacity: 0; stroke: #0b6e61; transform: scale(.4); transition: opacity .25s, transform .25s; }
+.done .boot-dot svg { opacity: 1; transform: none; }
+@keyframes boot-spin { to { transform: rotate(360deg); } }
+
+.boot-bar { width: 100%; height: 6px; border-radius: 6px; background: rgba(255, 255, 255, .2); overflow: hidden; }
+.boot-bar i { display: block; height: 100%; border-radius: 6px; background: #fff; transition: width .6s cubic-bezier(.22, .9, .25, 1); }
+.boot-note { min-height: 40px; margin: 14px 0 0; font-size: 13.5px; line-height: 1.45; color: var(--mute); max-width: 32ch; }
+
+.boot-skip { margin-top: 4px; border: 1.5px solid rgba(255, 255, 255, .45); background: transparent; color: #fff; border-radius: 999px; padding: 9px 20px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+.boot-skip:hover { background: rgba(255, 255, 255, .12); }
+
+.boot-err { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.boot-err p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--mute); max-width: 34ch; }
+.boot-err button { border: 0; border-radius: 16px; padding: 13px 28px; background: #fff; color: #054f45; font: inherit; font-weight: 800; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  .boot *, .boot { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .boot-ecg { stroke-dashoffset: 0; }
+}
+@media (max-height: 600px) { .boot-logo { width: 100px; height: 100px; margin-bottom: 14px; } .boot-core { width: 66px; height: 66px; } .boot-tag { margin-bottom: 14px; } }

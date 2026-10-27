@@ -31,13 +31,13 @@ In a big city like Dhaka, many people don't know whether to see a cardiologist, 
 
 ## Features
 
-- 🧍 **Interactive body map**: male and female models, with external, internal-organ and bone layers, and Front / Back / Head close-up / Hands / Feet views
-- 💬 **Free-text symptom input**: body-map taps and dropdown choices are written into the same text box (for example `chest pain; left hand tingling;`)
-- 🧠 **Department classifier**: fine-tuned text model covering 13 departments
-- 🚦 **Risk level model**: a separate classifier that reports the urgency of the described symptoms
-- 🗺️ **Nearest hospital finder**: browser geolocation plus Google Maps, with data for hospitals in Dhaka
-- 🆘 **SOS button**: one tap to call the emergency number
-- 📱 **Fits one phone screen**: the input flow is designed for mobile first
+- **Interactive body map**: male and female models, with external, internal-organ and bone layers, and Front / Back / Head close-up / Hands / Feet views
+- **Free-text symptom input**: body-map taps and dropdown choices are written into the same text box (for example `chest pain; left hand tingling;`)
+- **Department classifier**: fine-tuned text model covering 13 departments
+- **Risk level model**: a separate classifier that reports the urgency of the described symptoms (NOT DEVELOPED YET)
+- **Nearest hospital finder**: browser geolocation plus Google Maps, with data for hospitals in Dhaka
+- **SOS button**: one tap to call the emergency number
+- **Fits one phone screen**: the input flow is designed for mobile first
 
 ## How it works
 
@@ -59,16 +59,22 @@ The body-map UI only collects input. All decisions happen in the models and the 
 
 | | Department classifier | Risk classifier |
 |---|---|---|
-| Task | Symptom text → 1 of 13 departments | Symptom text (+ sex) → risk level |
-| Base | DistilBERT, fine-tuned | _fill in_ |
-| Hosted at | [`Nahraf-Chowdhury/InshaAllahHobe_v1`](https://huggingface.co/Nahraf-Chowdhury/InshaAllahHobe_v1) | _fill in_ |
-| Runs | In the browser via ONNX + `transformers.js`, or through an API | _fill in_ |
+| Task | Symptom text → 1 of 13 departments | Symptom text → risk level |
+| Base | DistilBERT, fine-tuned | - |
+| Hosted at | [`Nahraf-Chowdhury/InshaAllahHobe_v1`](https://huggingface.co/Nahraf-Chowdhury/InshaAllahHobe_v1) | - |
+| Runs | In the browser via ONNX + `transformers.js`, or through an API | - |
 
 ### Training data
 
 Training data was generated from a symptom dictionary grouped by department, then expanded with patient-style phrasings (informal wording, shuffled symptom order, unimportant symptoms mixed in) so the model copes with how people really describe what they feel. Mental-health rows are excluded from the current prototype. Training was done on a Colab GPU.
 
-_Add your final dataset size, accuracy, and F1 here once you have the evaluation numbers._
+## Results
+
+Evaluated on a held-out test split of N examples (13 departments).
+
+| Model | Accuracy | Macro F1 | Top-3 accuracy |
+|---|---|---|---|
+| Department head | 0.900 | 0.904 | 0.994 |
 
 ## API
 
@@ -88,26 +94,6 @@ POST {RISK_API}/risk
 { "text": "chest pain; left hand tingling;", "sex": "female" }
 ```
 
-## Getting started
-
-```bash
-# 1. Clone
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
-
-# 2. Install
-npm install          # or: pip install -r requirements.txt
-
-# 3. Configure
-cp .env.example .env
-# set MODEL_API, RISK_API and your Google Maps key
-
-# 4. Run
-npm run dev
-```
-
-_Edit these commands to match your actual stack._
-
 ### Environment variables
 
 | Variable | Description |
@@ -116,41 +102,33 @@ _Edit these commands to match your actual stack._
 | `RISK_API` | Base URL of the risk classifier |
 | `GOOGLE_MAPS_API_KEY` | Key for maps and directions |
 
-## Project structure
-
-```
-.
-├── app/            # Frontend (body-map input, results, hospital map)
-├── models/         # Training and export notebooks
-├── data/           # Symptom data and hospital_departments.csv
-└── docs/           # Screenshots and notes
-```
-
-_Edit to match your repo._
-
 ## Hospital data
 
-`hospital_departments.csv` has two columns, `hospital` and `department`. It maps 20 Dhaka hospitals to the 13 department names the classifier uses, so a prediction can be matched directly to hospitals that offer it.
+`hospital_departments.csv has two columns, `hospital` and `department`. It maps 18 Dhaka hospitals to the 13 department names the classifier uses, so a prediction can be matched directly to hospitals that offer it.
 
 ## Roadmap
 
-- [ ] Add common Bangladeshi conditions (such as dengue and typhoid) with help from doctors
+- [ ] Add more common Bangladeshi conditions with help from doctors
 - [ ] Support Bangla symptom input
 - [ ] Expand hospital coverage beyond Dhaka
 - [ ] Add mental-health departments
 - [ ] Evaluate the models with clinicians
+- [ ] Add blood collection feature
 
 ## Team
 
 | Name | Role |
 |---|---|
 | Nahraf Chowdhury | Model training |
-| _Teammate_ | Hospital and department data |
-| _Teammate_ | Frontend and body-map UI |
+| SYH Shanto | Hospital and department data |
+| Inzamumul Haque | Frontend and body-map UI |
+| Rawnak Tanvir Dihan | Symptom Data |
+| Md. Nazif Wasit | Backend |
+| Mehrab Murshad | Backend |
 
 ## Limitations
 
-- Predictions depend on how well the description matches the training data. Vague or unusual wording can give a wrong department.
+- Predictions depend on how well the description matches the training data. Vague or unusual wording shows no suggestions.
 - Hospital and department data is only as current as the last update.
 - The app has not been clinically validated.
 
@@ -162,4 +140,3 @@ Distributed under the _MIT_ License. See `LICENSE` for details.
 
 - [Hugging Face](https://huggingface.co) for model hosting
 - [DistilBERT](https://huggingface.co/distilbert-base-uncased) as the base model
-- The doctors and advisors who reviewed the symptom and department lists
